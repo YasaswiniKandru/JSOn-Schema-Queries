@@ -1,0 +1,62 @@
+{
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "$ref": "#/definitions/recursive_call",
+    "definitions": {
+        "recursive_call": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "posts": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/posts"
+                    }
+                }
+            },
+            "required": [
+                "posts"
+            ],
+            
+        },
+        "posts": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "postID": {
+                    "type": "number",
+                    "minimum": 0,
+
+                },
+                "postDate": {
+                    "type": "string",
+                    "format": "date"
+                },
+                "poster": {
+                    "type": "string",
+                    "format": "email"   
+                },
+                "subject": {
+                    "type": "string"
+                },
+                "content": {
+                    "type": "string"
+                },
+                "followup": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/posts"
+                    }
+                }
+            },
+            "required": [
+                "content",
+                "followup",
+                "postDate",
+                "postID",
+                "poster",
+                "subject"
+            ],
+            
+        }
+    }
+}
